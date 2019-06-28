@@ -3,3 +3,17 @@
   padding: 0 ; 
   box-sizing: border-box;
 }
+.navbar {
+  text-align: center;
+  width: 100%;                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+  padding: 1rem ;
+  background-color: #aaa;
+  margin-bottom: 2rem;
+}
+.navbar ul {
+  list-style: none;
+}
+.navbar li {
+  display: inline-block;
+  margin-right: 1rem ;
+}
