@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-
+import TodoItem from './TodoItem';
+import propTypes from 'prop-types';
 export default class Todos extends Component {
-
     render() {
         const todos = this.props.todos;
         const items = todos.map(item => {
-            return <li key={item.id}>
-                {item.title}
-            </li>
+            return <div key ={item.id}>
+                     <TodoItem 
+                     item={item} 
+                     markCompelted ={this.props.markCompelted} 
+                     delItem = {this.props.delItem}
+                     />
+                </div>
         })
         return (
             <div>
@@ -20,3 +24,8 @@ export default class Todos extends Component {
         )
     }
 }
+
+// PropTypes
+Todos.propTypes = {
+    todos : propTypes.array.isRequired
+} 

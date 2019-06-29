@@ -22,11 +22,30 @@ class App extends React.Component {
       }
     ]
   }
+  markCompelted = (id) =>{
+    this.setState({todos : this.state.todos.map(todo => {
+      if(todo.id === id) {
+        todo.competed = !todo.competed
+      }
+      return todo;
+    })})
+    
+  }
+  // This Function return only the Item that left after click 
+  delItem = (id) =>{
+    this.setState({
+      todos : [...this.state.todos.filter(todo => todo.id !== id)]
+    })
+  }
   render(){
     return(
       <div>
         <Navbar />
-        <Todos todos = {this.state.todos} />
+        <Todos 
+        todos = {this.state.todos} 
+        markCompelted ={this.markCompelted}
+        delItem ={this.delItem}
+         />
       </div>
     )
   }
