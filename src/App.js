@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import Todos from './components/Todos';
 import Navbar from './components/Navbar';
+import AddItem from './components/addItem';
+import uuid from 'uuid';
 class App extends React.Component {
   state = {
     todos :[
@@ -37,10 +39,22 @@ class App extends React.Component {
       todos : [...this.state.todos.filter(todo => todo.id !== id)]
     })
   }
+
+  addItem = (title) => {
+    const newTodo = {
+      id : uuid.v4() ,  // add a Unique Id
+      title , 
+      competed : false
+    }
+    this.setState({
+      todos : [...this.state.todos , newTodo]
+    })
+  }
   render(){
     return(
       <div>
         <Navbar />
+        <AddItem addItem = {this.addItem} />
         <Todos 
         todos = {this.state.todos} 
         markCompelted ={this.markCompelted}

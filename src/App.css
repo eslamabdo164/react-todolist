@@ -17,3 +17,9 @@
   display: inline-block;
   margin-right: 1rem ;
 }
+
+.btn {
+  padding: 8px;
+  background-color: #333;
+  color: #fff;
+}
