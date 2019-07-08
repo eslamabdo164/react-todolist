@@ -1,9 +1,12 @@
 import React from 'react';
 import './App.css';
+import {BrowserRouter as Router , Route} from 'react-router-dom';
 import Todos from './components/Todos';
 import Navbar from './components/Navbar';
 import AddItem from './components/addItem';
-import uuid from 'uuid';
+import About from './components/About';
+import uuid from 'uuid'; // add a Unique Id
+
 class App extends React.Component {
   state = {
     todos :[
@@ -52,15 +55,22 @@ class App extends React.Component {
   }
   render(){
     return(
-      <div>
+      <Router>
         <Navbar />
-        <AddItem addItem = {this.addItem} />
-        <Todos 
-        todos = {this.state.todos} 
-        markCompelted ={this.markCompelted}
-        delItem ={this.delItem}
-         />
-      </div>
+        <Route exact path ='/' render ={props => (
+          <React.Fragment> 
+              <AddItem addItem = {this.addItem} />
+              <Todos 
+              todos = {this.state.todos} 
+              markCompelted ={this.markCompelted}
+              delItem ={this.delItem}
+              />
+          </React.Fragment>
+        )} /> 
+
+        <Route path ='/about' component ={About} />
+      
+      </Router>
     )
   }
 
