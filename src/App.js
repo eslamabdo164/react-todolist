@@ -5,32 +5,24 @@ import Todos from './components/Todos';
 import Navbar from './components/Navbar';
 import AddItem from './components/addItem';
 import About from './components/About';
-import uuid from 'uuid'; // add a Unique Id
+// import uuid from 'uuid'; // add a Unique Id
+import axios from 'axios'; // For Fetching Data
 
 class App extends React.Component {
   state = {
-    todos :[
-      {
-        id : 1 ,
-        title : 'dinner With Friend', 
-        competed : false 
-      },
-      {
-        id : 2 ,
-        title : 'dinner With ahmed', 
-        competed : false 
-      },
-      {
-        id : 3 ,
-        title : 'dinner With Ali', 
-        competed : false 
-      }
-    ]
+    todos :[]
   }
+
+    // get the Data From JsonServer With Axios
+  componentDidMount() {
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+      .then(res => this.setState({todos : res.data}) )
+  }
+
   markCompelted = (id) =>{
     this.setState({todos : this.state.todos.map(todo => {
       if(todo.id === id) {
-        todo.competed = !todo.competed
+        todo.completed = !todo.completed
       }
       return todo;
     })})
@@ -44,14 +36,11 @@ class App extends React.Component {
   }
 
   addItem = (title) => {
-    const newTodo = {
-      id : uuid.v4() ,  // add a Unique Id
-      title , 
-      competed : false
-    }
-    this.setState({
-      todos : [...this.state.todos , newTodo]
+    axios.post('https://jsonplaceholder.typicode.com/todos', {
+      title ,
+      completed : false
     })
+    .then(res => this.setState({todos : [...this.state.todos , res.data]}))
   }
   render(){
     return(

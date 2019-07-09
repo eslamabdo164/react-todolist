@@ -7,7 +7,7 @@ export default class TodoItem extends Component {
                background : '#f4f4f4', 
                padding  : '10px' ,
                borderBottom : '1px solid #ccc',
-               textDecoration : this.props.item.competed ? 'line-through' : 'none'
+               textDecoration : this.props.item.completed ? 'line-through' : 'none'
            }
     }
     btnStyle =() =>{
